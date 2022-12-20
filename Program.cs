@@ -128,3 +128,35 @@ int number = Convert.ToInt32(Console.ReadLine());
 int[] resultArray = DecimalToBinary(number);
 Console.Write($"Число {number} в двочной системе выглядит так: {String.Join("", resultArray)}");
 */
+
+
+
+
+//Вариант 3. Через деления.
+
+
+int[] DecimalToBinary(int arg) // Метод, возвращающий массив, совокупность элементов которого отображает десят-ное число в двоичной системе.
+{
+    int stepen = Convert.ToInt32(Math.Floor(Math.Log(arg, 2))); // Логарифм arg по основ 2 и окргуление его до наибольшего
+                                                                // целого числа, которое меньше или равно указанному числу.
+
+    int size = stepen + 1; // Ввел доп переменную size для простоты восприятия в массиве и цикле for.
+                           // stepen + 1 - столько цифр должно быть в двоичном числе, следов-но и в массиве.
+
+    int[] array = new int[size];
+
+    for (int i = 0; i < size; i++)
+    {
+        array[size - 1 - i] = arg % 2;
+        arg = arg / 2;
+    }
+    return array;
+}
+
+Console.Clear();
+
+Console.Write("Введите число в десятичной системе счисления: ");
+int number = Convert.ToInt32(Console.ReadLine());
+
+int[] resultArray = DecimalToBinary(number);
+Console.Write($"Число {number} в двочной системе выглядит так: {String.Join("", resultArray)}");
